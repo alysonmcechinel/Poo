@@ -1,96 +1,65 @@
 ﻿using System.Numerics;
+using Poo;
 
-// CLASSE E OBJETOS
+Console.WriteLine($"Exemplo de herança");
 
-// var pessoa = new Pessoa()
-// {
-//     Nome = "Teste 1",
-//     Profissao = "Dev Pleno",
-//     Telefone = "8888-3333"
-// };
+// Criando uma instância
+var cachorro = new Cachorro();
+cachorro.Nome = "Rex";
 
-var pessoa = new Pessoa();
+// Criando uma instância
+var gato = new Gato("Xaninha");
 
-// ??= é utilizado se o campo Nome estiver nulo ele seta esse novo valor, sem precisar de um if de verificação.
-pessoa.Nome ??= "Alyson";
-pessoa.Profissao = "Dev Pleno";
-pessoa.Telefone = "9999-2222";
+cachorro.Comer(); // Método herdado da classe Animal
+cachorro.Latir(); // Método específico da classe Cachorro
 
-pessoa.Apresentar();
-pessoa.Apresentar("Ciclano");
+gato.Comer(); // Método herdado da classe Animal
+gato.Miar(); // Método específico da classe Gato
 
-var pessoa2 = new Pessoa("Matias", "Dev Junior", "2222-4444");
+Console.WriteLine($"\n---------------------------------------------\n");
+Console.WriteLine($"Exemplo classe abstrata:");
 
-pessoa2.Apresentar();
+// var contaBancaria = new ContaBancaria(); // erro de compilação não consegue instanciar uma classe abstrata
+var conta = new ContaCorrente();
 
+conta.NumeroDaConta = "Teste 123456";
+conta.Saldo = 1600;
+// conta.SaldoChequeEspecial = 2000; //exemplo de encapsulamento aonde uma propriedade com  "set protected" não consigo instanciar
 
-var funcionario = new Funcionario("Alyson Funcionario", "Dev Pleno", "3333-2222", 6500);
+conta.Sacar(1500);
+conta.Depositar(500);
+conta.MostrarSaldo();
 
-// funcionario.Nome = "Alyson Funcionario";
-// funcionario.Profissao = "Dev Pleno";
-// funcionario.Telefone = "9999-2222";
-// funcionario.Salario = 15000;
+Console.WriteLine($"\n---------------------------------------------\n");
+Console.WriteLine($"Exemplo encapsulamento:");
 
-// Abstração
-funcionario.Apresentar();
+var funcionario = new Funcionario();
+funcionario.Nome = "Alyson";
+funcionario.SetCPF("12345678901");
 
-// Polimorfismo
+// Não é possível acessar diretamente Idade (é protected)
+// funcionario.Idade = 30; // Isso causaria um erro de compilação
 
-Pessoa[] pessoas = { pessoa, funcionario };
+funcionario.Aniversario();
+funcionario.ExibirInformacoes();
 
-foreach (var p in pessoas)
-{
-    p.Apresentar();
-}
+Console.WriteLine($"\n---------------------------------------------\n");
+Console.WriteLine("Exemplo polimorfismo:");
 
+// Overload
+var calc = new Calculadora();
 
-public class Pessoa
-{
-    public Pessoa() { } // deixa inicializar var pessoa = new Pessoa();
+Console.WriteLine(calc.Somar(2, 3)); // Chama Somar(int, int)
+Console.WriteLine(calc.Somar(2, 3, 4)); // Chama Somar(int, int, int)
+Console.WriteLine(calc.Somar(2.5, 3.7)); // Chama Somar(double, double)
 
-    public Pessoa(string nome, string profissao, string telefone) // deixa inicializar apenas com o construtor passando os parametros
-    {
-        Nome = nome;
-        Profissao = profissao;
-        Telefone = telefone;
-    }
+// Override 
+var caixa = new CaixaDeSom();
+var fone = new Fone();
+var jbl = new JBL();
 
-    public string Nome { get; set; }
-    public string Profissao { get; set; }
-    public string Telefone { get; set; }
+caixa.EscutarMusica();
+fone.EscutarMusica();
+jbl.EscutarMusica();
 
-    public virtual void Apresentar()
-    {
-        Console.WriteLine(FormatarMensagem());
-    }
-
-    // Overload
-    public void Apresentar(string nome)
-    {
-        Console.Write($"Olá, {nome}: {FormatarMensagem()}");
-    }
-
-    // Encapsulamento 
-    private string FormatarMensagem()
-    {
-        return $"{Nome}, {Profissao}, {Telefone}";
-    }
-}
-
-// HERANÇA
-
-public class Funcionario : Pessoa
-{
-    public Funcionario(string nome, string profissao, string telefone, int salario) : base(nome, profissao, telefone)
-    {
-        Salario = salario;
-    }
-
-    public int Salario { get; set; }
-
-    public override void Apresentar()
-    {
-        base.Apresentar();
-        Console.WriteLine($"Salario: {Salario}");
-    }
-}
+Console.WriteLine($"\n---------------------------------------------\n");
