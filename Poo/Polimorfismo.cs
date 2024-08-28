@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poo
 {
-    // Sobrecarga de métodos (Overload)
+    // Exemplo de sobrecarga de métodos (Overload)
     public class Calculadora
     {
         // Método que soma dois inteiros
@@ -19,11 +19,11 @@ namespace Poo
         public double Somar(double a, double b) => a + b;
     }
 
-    // Sobrescrita de Métodos (Override)
+    // Exemplo de sobrescrita de métodos (Override)
     // Classe base
     public class CaixaDeSom
     {
-        // Método virtual permite que seja sobrescrito em uma classe derivada
+        // Método virtual: pode ser sobrescrito em uma classe derivada
         public virtual void EscutarMusica() => Console.WriteLine("A caixa de som toca a musica");
     }
 

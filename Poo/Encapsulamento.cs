@@ -8,13 +8,13 @@ namespace Poo
 {
     public class Pessoa
     {
-        // privado - só pode ser setado dentro da própria classe
+        // Propriedade privada: só pode ser setada (atribuida) dentro da própria classe.
         public string Cpf { get; private set; }
 
-        // pública - pode ser setada de qualquer lugar
+        // Propriedade pública: pode ser setada (atribuida) de qualquer lugar.
         public string Nome { get; set; }
 
-        // protegida - pode ser setada na classe base e em classes derivadas
+        // Propriedade protegida: pode ser setada (atribuida) na classe base e em classes derivadas.
         public int Idade { get; protected set; }
 
         // Método público para definir o CPF (encapsula a lógica de validação)
@@ -26,13 +26,13 @@ namespace Poo
                 Console.WriteLine("CPF invalido!");
         }
 
-        // Método privado - só pode ser acessado dentro da própria classe
+        // Método privado: só pode ser acessado dentro da própria classe.
         private bool ValidarCPF(string cpf) => cpf.Length == 11;
     }
 
     public class Funcionario : Pessoa
     {
-        // Método público que acessa o campo protegido Idade
+        // Método público que acessa e modifica o campo protegido Idade.
         public void Aniversario() => Idade++;
 
         // Método para exibir informações do funcionário

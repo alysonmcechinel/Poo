@@ -9,41 +9,43 @@ namespace Poo
     // Classe base
     public class Animal
     {
-        public Animal() { } // construtor 1: deixa inicializar var animal = new Animal();
+        // Construtor padrão: permite criar uma instância de Animal sem passar nenhum parâmetro.
+        // Exemplo: Classe Cachorro
+        // var animal = new Animal();
+        public Animal() { }
 
-        public Animal(string nome) // construtor 2: tera que inicializar passando o parametro var animal = new Animal("Rex"); exemplo gato.
+        // Construtor com parâmetro: exige que o nome seja fornecido ao criar uma instância.
+        // Exemplo: var animal = new Animal("Rex");
+        // Exemplo: Classe Gato
+        public Animal(string nome)
         {
             Nome = nome;
         }
 
         public string Nome { get; set; }
 
-
-        public void Comer()
-        {
-            Console.WriteLine($"{Nome} está comendo");
-        }
+        // Método que pode ser chamado por qualquer classe derivada
+        public void Comer() => Console.WriteLine($"{Nome} está comendo");
+        
     }
 
     // Classe derivada
     public class Cachorro : Animal
     {
-        public void Latir()
-        {
-            Console.WriteLine($"{Nome} está latindo");
-        }
+        // Método específico da classe Cachorro
+        public void Latir() => Console.WriteLine($"{Nome} está latindo");
     }
 
     // Classe derivada
     public class Gato : Animal
     {
+        // Construtor que utiliza o construtor da classe base (Animal)
         public Gato(string nome) : base(nome)
         {
         }
 
-        public void Miar()
-        {
-            Console.WriteLine($"{Nome} está miando");
-        }
+        // Método específico da classe Gato
+        public void Miar() => Console.WriteLine($"{Nome} está miando");
+        
     }
 }
